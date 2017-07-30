@@ -1,11 +1,103 @@
+;; Maximize when buffer is selected
+(package-initialize)
 
-; list the repositories containing them
-(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
-                         ("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")))
+(when window-system
+  (setq frame-title-format '(buffer-file-name "%f" ("%b")))
+  (add-hook 'window-setup-hook 'toggle-frame-maximized t))
+
+;; Creating Emacs lisp files
+(add-to-list 'load-path "~/.emacs.d/elisp/")
+
+(require 'package)
+
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/") t)
+
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+
+(package-initialize)
+
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
+;; Using use-package from now
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(setq use-package-always-ensure t)
+(setq use-package-verbose t)
+
+(require 'use-package)
+
+;; SETTING LOCALE UTF-8
+(setq locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+
+;; ORG-BULLETS
+(use-package org-bullets
+:init
+(setq org-bullets-bullet-list
+'("◉" "◎" "⚫" "○" "►" "◇"))
+:config
+(setcdr org-bullets-bullet-map nil)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+)
+
+;; HYDRA
+(use-package hydra
+  :defer t
+  )
+
+(defhydra hydra-vc ()
+  "vc hydra"
+  ("n" git-gutter+-next-hunk  "next hunk")
+  ("p" git-gutter+-previous-hunk "previous hunk")
+  ("d" git-gutter+-show-hunk "show diff")
+  ("r" git-gutter+-revert-hunk "revert hunk")
+  ("b" magit-blame "blame")
+  ("a" vc-annotate "annotate")
+  ("t" git-timemachine "timemachine" :exit t)
+  )
+
+(global-set-key (kbd "<f8>") 'hydra-vc/body)
+
+(use-package transpose-frame)
+
+(defhydra hydra-transpose ()
+  "transposing hydra"
+  ("l" transpose-lines "lines")
+  ("w" transpose-words "words")
+  ("s" transpose-sexps "sexps")
+  ("p" transpose-paragraphs "paragraphs")
+  ("c" transpose-chars "characters")
+  ("W" transpose-frame "windows")
+  )
+
+(global-set-key (kbd "C-t") 'hydra-transpose/body)
+
+(defhydra hydra-modes ()
+  "settings hydra"
+  ("l" lisp-interaction-mode "lisp interaction" :exit t)
+  ("p" python-mode "python" :exit t)
+  ("o" org-mode "org" :exit t)
+  ("s" sql-mysql "MySQL interaction" :exit t)
+  ("x" sx-compose-mode "Stack Exhange compose" :exit t)
+  ("m" gfm-mode "Markdown" :exit t)
+  ("j" js2-mode "JavaScript" :exit t)
+  ("w" web-mode "Web" :exit t)
+  )
+
+(global-set-key (kbd "s-M") 'hydra-modes/body)
+
 
 ; activate all the packages (in particular autoloads)
-(package-initialize)
 (elpy-enable)
 
 (require 'multiple-cursors)
@@ -44,7 +136,7 @@
 ;;      smtpmail-stream-type 'starttls
       smtpmail-smtp-service 25)
 
-(defvar my-mu4e-account-alist
+(defvar my-mu4e-account-alist2
   '(
     ("Orange"
      (mu4e-sent-folder "/Orange/Saved Items")

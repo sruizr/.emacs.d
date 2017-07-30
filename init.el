@@ -40,6 +40,13 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
+;; ORG agenda
+
+(bind-key "C-c l" 'org-store-link)
+(bind-key "C-c c" 'org-capture)
+(bind-key "C-c a" 'org-agenda)
+
+
 ;; ORG-BULLETS
 (use-package org-bullets
 :init

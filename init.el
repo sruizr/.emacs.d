@@ -143,7 +143,7 @@
 ;;      smtpmail-stream-type 'starttls
       smtpmail-smtp-service 25)
 
-(defvar my-mu4e-account-alist2
+(defvar my-mu4e-account-alist
   '(
     ("Orange"
      (mu4e-sent-folder "/Orange/Saved Items")

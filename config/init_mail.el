@@ -1,3 +1,4 @@
+
 ;; Email configuration
 ;; Only needed if your maildir is _not_ ~/Maildir
 ;; Must be a real dir, not a symlink
@@ -7,57 +8,53 @@
 (require 'mu4e)
 (setq mu4e-view-prefer-html t)
 
-(setq mu4e-sent-folder "/Orange/Saved Items"
-      mu4e-drafts-folder "/Orange/Drafts"
-      user-mail-address "s.ruiz.r@orange.es"
-      smtpmail-default-smtp-server "smtp.account1.example.com"
-      smtpmail-local-domain "account1.example.com"
-      smtpmail-smtp-server "smtp.account1.example.com"
-;;      smtpmail-stream-type 'starttls
-      smtpmail-smtp-service 25)
+(setq mu4e-contexts
+    `( ,(make-mu4e-context
+          :name "Orange"
+          :enter-func (lambda () (mu4e-message "Entrando en contexto Orange"))
+          :leave-func (lambda () (mu4e-message "Saliendo de contexto Orange"))
+          ;; we match based on the contact-fields of the message
+          :match-func (lambda (msg)
+                        (when msg 
+                          (mu4e-message-contact-field-matches msg 
+                            :to "s.ruiz.r@orange.es")))
+          :vars '( ( user-mail-address      . "s.ruiz.r@orange.es"  )
+                   ( user-full-name         . "Salvador Ruiz" )
+		   (mu4e-sent-folder .  "/Orange/Saved Items")
+		   (mu4e-drafts-folder . "/Orange/Drafts")
+		   (user-mail-address . "s.ruiz.r@orange.es")
+		   ;;(smtpmail-stream-type 'starttls)
+		   (smtpmail-default-smtp-server  . "smtp.orange.es")
+		   (smtpmail-smtp-user . "s.ruiz.r@orange.es")
+		   (smtpmail-smtp-server . "smtp.orange.es")
+		   (smtpmail-smtp-service . 25)
+         	   )
+	)
+       ,(make-mu4e-context
+          :name "Gmail"
+          :enter-func (lambda () (mu4e-message "Entrando en Gmail"))
+          ;; no leave-func
+          ;; we match based on the contact-fields of the message
+          :match-func (lambda (msg)
+                        (when msg 
+                          (mu4e-message-contact-field-matches msg 
+                            :to "salvador.ruiz.r@gmail.com")))
+          :vars '( ( user-mail-address       . "salvador.ruiz.r@gmail.com" )
+                   ( user-full-name          . "Salvador Ruiz" )
+		   (mu4e-sent-folder . "/Gmail/Saved Items")
+		   (mu4e-drafts-folder . "/Gmail/Drafts")
+		   (user-mail-address . "salvador.ruiz.r@gmail.com")
+		   (smtpmail-default-smtp-server . "smtp.gmail.com")
+		   (smtpmail-smtp-user . "salvador.ruiz.r@gmail.com")
+		   (smtpmail-smtp-server . "smtp.gmail.com")
+		   (smtpmail-smtp-service . 587))
+                 )
+       )
+     )
+)
 
-(defvar my-mu4e-account-alist
-  '(
-    ("Orange"
-     (mu4e-sent-folder "/Orange/Saved Items")
-     (mu4e-drafts-folder "/Orange/Drafts")
-     (user-mail-address "s.ruiz.r@orange.es")
-     ;;(smtpmail-stream-type 'starttls)
-     (smtpmail-default-smtp-server "smtp.orange.es")
-     (smtpmail-smtp-server "smtp.orange.es")
-     (smtpmail-smtp-service 25)
-    )
-    ("Gmail"
-     (mu4e-sent-folder "/Gmail/Saved Items")
-     (mu4e-drafts-folder "/Gmail/Drafts")
-     (user-mail-address "salvador.ruiz.r@gmail.com")
-     (smtpmail-default-smtp-server "smtp.gmail.com")
-     (smtpmail-smtp-user "salvador.ruiz.r@gmail.com")
-     (smtpmail-smtp-server "smtp.gmail.com")
-     (smtpmail-smtp-service 587))
-    )
-  )
+(setq mu4e-context-policy 'pick-first)
 
-(defun my-mu4e-set-account ()
-  "Set the account for composing a message."
-  (let* ((account
-          (if mu4e-compose-parent-message
-              (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
-                (string-match "/\\(.*?\\)/" maildir)
-                (match-string 1 maildir))
-            (completing-read (format "Compose with account: (%s) "
-                                     (mapconcat #'(lambda (var) (car var))
-                                                my-mu4e-account-alist "/"))
-                             (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
-                             nil t nil nil (caar my-mu4e-account-alist))))
-         (account-vars (cdr (assoc account my-mu4e-account-alist))))
-    (if account-vars
-        (mapc #'(lambda (var)
-                  (set (car var) (cadr var)))
-              account-vars)
-      (error "No email account found"))))
-
-(add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 (add-to-list 'mu4e-view-actions
 	     '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 

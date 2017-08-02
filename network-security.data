@@ -1,4 +1,5 @@
 (
+ (:id "sha1:403f021e1d505fc85fa37300946bec8d9425a2e3" :fingerprint :none :host "smtp.orange.es:25" :conditions (:unencrypted))
  (:id "sha1:706608f9b7fcfdea563351d49047f296d74a5a76" :fingerprint "sha1:9f:3f:7b:a2:35:a2:44:ec:82:25:e1:32:09:d0:b1:1f:84:98:70:54")
  (:id "sha1:85457c729378cc93c732b6a3941c8e4f9c2e60f3" :fingerprint "sha1:ab:a6:d7:6a:b3:d3:63:fa:19:0d:65:41:60:23:6e:ef:d3:2a:46:dc" :host "marmalade-repo.org:443" :conditions (:insecure :unknown-ca :invalid))
 )

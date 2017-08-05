@@ -20,6 +20,9 @@
     )
   )
 
-(use-package magit)
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status))
+  )
 (use-package projectile)
 (projectile-global-mode)

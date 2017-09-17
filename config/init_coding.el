@@ -19,7 +19,11 @@
     (setq elpy-rpc-backend "jedi")
     )
   )
+(add-hook 'python-mode-hook 'linum-mode)
 
-(use-package magit)
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status))
+  )
 (use-package projectile)
 (projectile-global-mode)

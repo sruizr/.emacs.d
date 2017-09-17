@@ -93,6 +93,10 @@
 (global-set-key (kbd "s-M") 'hydra-modes/body)
 
 (use-package multiple-cursors)
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status))
+)
 
 ; load theme
 (load-theme 'tango-dark)
@@ -103,7 +107,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (multiple-cursors transpose-frame hydra projectile magit elpy use-package org-bullets)))
+    (multiple-cursors transpose-frame hydra projectile elpy use-package org-bullets)))
  '(send-mail-function (quote smtpmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

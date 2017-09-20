@@ -1,0 +1,4 @@
+; activate all the packages (in particular autoloads)
+(use-package elpy)
+(use-package magit)
+(use-package projectile)

@@ -76,15 +76,23 @@
   ("W" transpose-frame "windows")
   )
 
-(global-set-key (kbd "C-t") 'hydra-transpose/body)
+(global-set-key (kbd "C-x C-t") 'hydra-transpose/body)
+
+(defun insert-date (arg)
+   (interactive "P")
+   (insert (if arg
+               (format-time-string "%d.%m.%Y")
+             (format-time-string "%Y-%m-%d"))))
+
+(global-set-key (kbd "C-t") 'insert-date)
 
 (defhydra hydra-modes ()
   "settings hydra"
   ("l" lisp-interaction-mode "lisp interaction" :exit t)
   ("p" python-mode "python" :exit t)
   ("o" org-mode "org" :exit t)
-  ("s" sql-mysql "MySQL interaction" :exit t)
   ("x" sx-compose-mode "Stack Exhange compose" :exit t)
+  ("s" sql-mysql "MySQL interaction" :exit t)
   ("m" gfm-mode "Markdown" :exit t)
   ("j" js2-mode "JavaScript" :exit t)
   ("w" web-mode "Web" :exit t)
@@ -93,6 +101,10 @@
 (global-set-key (kbd "s-M") 'hydra-modes/body)
 
 (use-package multiple-cursors)
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status))
+)
 
 ; load theme
 (load-theme 'tango-dark)
@@ -128,6 +140,8 @@
   (indent-according-to-mode))
 
 
+(delete-selection-mode 1)
+
 
 ;; Key bindings for multiple cursors
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -136,6 +150,3 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (global-set-key [(M-<Up>)]  'move-line-up)
 (global-set-key [(M-<Down>)]  'move-line-down)
-
-
-(delete-selection-mode 1)

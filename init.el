@@ -78,6 +78,69 @@
 
 (global-set-key (kbd "C-x C-t") 'hydra-transpose/body)
 
+
+ (defhydra hydra-window ()
+   "
+Movement^^        ^Split^         ^Switch^		^Resize^
+----------------------------------------------------------------
+_h_ ←       	_v_ertical    	_b_uffer		_q_ X←
+_j_ ↓        	_x_ horizontal	_f_ind files	_w_ X↓
+_k_ ↑        	_z_ undo      	_a_ce 1		_e_ X↑
+_l_ →        	_Z_ reset      	_s_wap		_r_ X→
+_F_ollow		_D_lt Other   	_S_ave		max_i_mize
+_SPC_ cancel	_o_nly this   	_d_elete	
+"
+   ("h" windmove-left )
+   ("j" windmove-down )
+   ("k" windmove-up )
+   ("l" windmove-right )
+   ("q" hydra-move-splitter-left/body)
+   ("w" hydra-move-splitter-down/body)
+   ("e" hydra-move-splitter-up/body)
+   ("r" hydra-move-splitter-right/body)
+   ("b" helm-mini)
+   ("f" helm-find-files)
+   ("F" follow-mode)
+   ("a" (lambda ()
+          (interactive)
+          (ace-window 1)
+          (add-hook 'ace-window-end-once-hook
+                    'hydra-window/body))
+       )
+   ("v" (lambda ()
+          (interactive)
+          (split-window-right)
+          (windmove-right))
+       )
+   ("x" (lambda ()
+          (interactive)
+          (split-window-below)
+          (windmove-down))
+       )
+   ("s" (lambda ()
+          (interactive)
+          (ace-window 4)
+          (add-hook 'ace-window-end-once-hook
+                    'hydra-window/body)))
+   ("S" save-buffer)
+   ("d" delete-window)
+   ("D" (lambda ()
+          (interactive)
+          (ace-window 16)
+          (add-hook 'ace-window-end-once-hook
+                    'hydra-window/body))
+       )
+   ("o" delete-other-windows)
+   ("i" ace-maximize-window)
+   ("z" (progn
+          (winner-undo)
+          (setq this-command 'winner-undo))
+   )
+   ("Z" winner-redo)
+   ("SPC" nil)
+   )
+(global-set-key (kbd "C-x w") 'hydra-window/body)
+
 (defun insert-date (arg)
    (interactive "P")
    (insert (if arg
@@ -115,7 +178,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (hydra magit use-package transpose-frame projectile org-bullets multiple-cursors hydra elpy dash)))
+    (helm-projectile hydra magit use-package transpose-frame projectile org-bullets multiple-cursors hydra elpy dash)))
  '(send-mail-function (quote smtpmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

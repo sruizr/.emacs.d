@@ -26,4 +26,15 @@
   :bind (("C-x g" . magit-status))
   )
 (use-package projectile)
+
 (projectile-global-mode)
+(use-package helm-projectile
+      :ensure    helm-projectile
+      :init
+      (helm-projectile-on)
+      :config
+      (progn
+        (setq projectile-switch-project-action 'projectile-dired)
+        (setq projectile-completion-system 'helm)
+	)
+      )

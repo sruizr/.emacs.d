@@ -169,9 +169,21 @@ _SPC_ cancel	_o_nly this   	_d_elete
   :bind (("C-x g" . magit-status))
 )
 
-; load theme
-(load-theme 'tango-dark)
+					; load theme
+
+;; Click [here](https://github.com/hbin/dotfiles-for-emacs) to take a further look.
+;; Run on terminal (curl -L https://github.com/hbin/top-programming-fonts/raw/master/install.sh | bash) to
+;; install fonts Menlo, Monaco, ....
+(set-frame-font "Menlo:pixelsize=18")
+
+;; If you use Emacs Daemon mode
+(add-to-list 'default-frame-alist
+               (cons 'font "Menlo:pixelsize=18"))
 (custom-set-variables
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'dracula t)
+ 
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
@@ -244,3 +256,8 @@ _SPC_ cancel	_o_nly this   	_d_elete
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (global-set-key [(M-<Up>)]  'move-line-up)
 (global-set-key [(M-<Down>)]  'move-line-down)
+
+
+(use-package powerline
+    )
+(powerline-default-theme)

@@ -163,11 +163,39 @@ _SPC_ cancel	_o_nly this   	_d_elete
 
 (global-set-key (kbd "s-M") 'hydra-modes/body)
 
-(use-package multiple-cursors)
+(use-package multiple-cursors
+  :ensure t
+  )
+(defhydra multiple-cursors-hydra (:hint nil)
+  
+  "
+     ^Up^            ^Down^        ^Other^
+----------------------------------------------
+[_p_]   Next    [_n_]   Next    [_l_] Edit lines
+[_P_]   Skip    [_N_]   Skip    [_a_] Mark all
+[_M-p_] Unmark  [_M-n_] Unmark  [_r_] Mark by regexp
+^ ^             ^ ^             [_q_] Quit
+"
+  ("l" mc/edit-lines :exit t)
+  ("a" mc/mark-all-like-this :exit t)
+  ("n" mc/mark-next-like-this)
+  ("N" mc/skip-to-next-like-this)
+  ("M-n" mc/unmark-next-like-this)
+  ("p" mc/mark-nevious-like-this)
+  ("P" mc/skip-to-nevious-like-this)
+  ("M-p" mc/unmark-nevious-like-this)
+  ("r" mc/mark-all-in-region :exit t)
+  ("q" nil)
+  ("<mouse-1>" mc/add-cursor-on-click)
+  ("<down-mouse-1>" ignore)
+  ("<drag-mouse-1>" ignore)
+)
+(global-set-key (kbd "C-<") 'multiple-cursors-hydra/body)
+
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status))
-)
+  )
 
 					; load theme
 
@@ -179,11 +207,13 @@ _SPC_ cancel	_o_nly this   	_d_elete
 ;; If you use Emacs Daemon mode
 (add-to-list 'default-frame-alist
                (cons 'font "Menlo:pixelsize=18"))
-(custom-set-variables
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'dracula t)
- 
+
+
+(custom-set-variables
+
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
@@ -200,7 +230,7 @@ _SPC_ cancel	_o_nly this   	_d_elete
  '(package-hidden-regexps (quote ("helm-projectile")))
  '(package-selected-packages
    (quote
-    (color-theme-sanityinc-tomorrow helm-projectile hydra magit use-package transpose-frame projectile org-bullets multiple-cursors hydra elpy dash)))
+    (color-theme-sanityinc-tomorrow helm-projectile hydra magit use-package transpose-frame projectile org-bullets hydra elpy dash)))
  '(send-mail-function (quote smtpmail-send-it))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
@@ -248,16 +278,27 @@ _SPC_ cancel	_o_nly this   	_d_elete
 
 (delete-selection-mode 1)
 (add-hook 'python-mode 'linum-mode)
-(global hl-line-mode)
+;(global hl-line-mode)
+
 ;; Key bindings for multiple cursors
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+;; (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+;; (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 (global-set-key [(M-<Up>)]  'move-line-up)
 (global-set-key [(M-<Down>)]  'move-line-down)
 
 
-(use-package powerline
-    )
-(powerline-default-theme)
+;  (use-package powerline
+;    )
+;(powerline-default-theme)
+
+(use-package spaceline
+  :demand t
+  :init
+  (setq powerline-default-separator 'arrow-fade)
+  :config
+  (require 'spaceline-config)
+  (spaceline-spacemacs-theme)
+  )
+  

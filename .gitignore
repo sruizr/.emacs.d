@@ -8,7 +8,6 @@ elpa/
 eshell/
 savehist
 session*
-themes/
 tutorial/
 settings.el
 projectile-bookmarks.eld

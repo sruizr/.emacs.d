@@ -19,7 +19,11 @@
     (setq elpy-rpc-backend "jedi")
     )
   )
-(add-hook 'python-mode-hook 'linum-mode)
+(add-hook 'python-mode-hook
+	  'linum-mode
+	  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+	  )
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (use-package magit
   :ensure t

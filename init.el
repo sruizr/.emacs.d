@@ -88,7 +88,7 @@ _j_ ↓        	_x_ horizontal	_f_ind files	_w_ X↓
 _k_ ↑        	_z_ undo      	_a_ce 1		_e_ X↑
 _l_ →        	_Z_ reset      	_s_wap		_r_ X→
 _F_ollow		_D_lt Other   	_S_ave		max_i_mize
-_SPC_ cancel	_o_nly this   	_d_elete	
+_SPC_ cancel	_o_nly this   	_d_elete
 "
    ("h" windmove-left )
    ("j" windmove-down )
@@ -167,7 +167,7 @@ _SPC_ cancel	_o_nly this   	_d_elete
   :ensure t
   )
 (defhydra multiple-cursors-hydra (:hint nil)
-  
+
   "
      ^Up^            ^Down^        ^Other^
 ----------------------------------------------
@@ -229,7 +229,7 @@ _SPC_ cancel	_o_nly this   	_d_elete
  '(package-hidden-regexps (quote ("helm-projectile")))
  '(package-selected-packages
    (quote
-    (spaceline color-theme-sanityinc-tomorrow helm-projectile hydra magit use-package transpose-frame projectile org-bullets hydra elpy dash)))
+    (pyenv-mode spaceline color-theme-sanityinc-tomorrow helm-projectile hydra magit use-package transpose-frame projectile org-bullets hydra elpy dash)))
  '(send-mail-function (quote smtpmail-send-it))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
@@ -300,4 +300,5 @@ _SPC_ cancel	_o_nly this   	_d_elete
   (require 'spaceline-config)
   (spaceline-spacemacs-theme)
   )
-  
+
+(use-package )

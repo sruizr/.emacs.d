@@ -301,7 +301,6 @@ _SPC_ cancel	_o_nly this   	_d_elete
   (spaceline-spacemacs-theme)
   )
 
-
 (add-hook 'focus-out-hook (
 			   lambda () (save-some-buffers t)
 				  )

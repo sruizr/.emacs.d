@@ -17,3 +17,5 @@
 
 (find-file "/home/sruiz/Dropbox/Org/inbox.org")
 (find-file "/home/sruiz/Dropbox/Org/gtd.org")
+
+(setq org-default-notes-file "~/home/sruiz/Dropbox/Org/inbox.org")

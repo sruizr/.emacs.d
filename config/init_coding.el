@@ -1,4 +1,4 @@
-; activate all the packages (in particular autoloads)
+;; activate all the packages (in particular autoloads)
 
 
 ; assure to install jedi, rope, flake8, importmagic

@@ -29,9 +29,12 @@
   :ensure t
   :bind (("C-x g" . magit-status))
   )
-(use-package projectile)
 
+
+(use-package projectile
+  )
 (projectile-global-mode)
+
 (use-package helm-projectile
       :ensure    helm-projectile
       :init

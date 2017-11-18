@@ -300,5 +300,6 @@ _SPC_ cancel	_o_nly this   	_d_elete
   (require 'spaceline-config)
   (spaceline-spacemacs-theme)
   )
+(use-package yasnippet
 
-(use-package )
+  )

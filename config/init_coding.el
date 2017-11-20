@@ -1,4 +1,4 @@
-; activate all the packages (in particular autoloads)
+;; activate all the packages (in particular autoloads)
 
 
 ; assure to install jedi, rope, flake8, importmagic
@@ -29,9 +29,12 @@
   :ensure t
   :bind (("C-x g" . magit-status))
   )
-(use-package projectile)
 
+
+(use-package projectile
+  )
 (projectile-global-mode)
+
 (use-package helm-projectile
       :ensure    helm-projectile
       :init

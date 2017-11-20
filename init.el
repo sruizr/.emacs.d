@@ -300,11 +300,13 @@ _SPC_ cancel	_o_nly this   	_d_elete
   (require 'spaceline-config)
   (spaceline-spacemacs-theme)
   )
-
+(use-package yasnippet)
 (add-hook 'focus-out-hook (
+
 			   lambda () (save-some-buffers t)
 				  )
 	  )
+
 ;; it looks like counsel is a requirement for swiper
 (use-package counsel
   :ensure t
@@ -332,4 +334,5 @@ _SPC_ cancel	_o_nly this   	_d_elete
     (global-set-key (kbd "C-x l") 'counsel-locate)
     (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-    ))
+  )
+)

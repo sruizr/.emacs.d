@@ -45,3 +45,6 @@
         (setq projectile-completion-system 'helm)
 	)
       )
+(use-package flycheck
+  :ensure t
+  )

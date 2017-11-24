@@ -11,7 +11,7 @@
     (when (require 'flycheck nil t)
       (remove-hook 'elpy-modules 'elpy-module-flymake)
       (remove-hook 'elpy-modules 'elpy-module-yasnippet)
-      (remove-hook 'elpy-mode-hook 'elpy-module-highlight-indentation)
+;;      (remove-hook 'elpy-mode-hook 'elpy-module-highlight-indentation)
       (add-hook 'elpy-mode-hook 'flycheck-mode)
       )
     (elpy-enable)

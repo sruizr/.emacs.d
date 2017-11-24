@@ -336,3 +336,4 @@ _SPC_ cancel	_o_nly this   	_d_elete
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
   )
 )
+(setq backup-directory-alist `(("." . "~/.esaves")))

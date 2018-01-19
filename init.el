@@ -35,7 +35,7 @@
 (require 'use-package)
 
 (load "~/.emacs.d/config/init_org.el")
-(load "~/.emacs.d/config/init_mail.el")
+;; (load "~/.emacs.d/config/init_mail.el")
 (load "~/.emacs.d/config/init_coding.el")
 
 ;; SETTING LOCALE UTF-8

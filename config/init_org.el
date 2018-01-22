@@ -15,7 +15,10 @@
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 )
 
-(find-file "/home/sruiz/Dropbox/Org/inbox.org")
-(find-file "/home/sruiz/Dropbox/Org/gtd.org")
+;; (find-file "/home/sruiz/Dropbox/Org/inbox.org")
+;; (find-file "/home/sruiz/Dropbox/Org/gtd.org")
 
-(setq org-default-notes-file "~/home/sruiz/Dropbox/Org/inbox.org")
+;; (setq org-default-notes-file "~/home/sruiz/Dropbox/Org/inbox.org")
+
+(find-file "/home/sruiz/AKO/Org/gtd.org")
+(setq org-default-notes-file "/home/sruiz/AKO/Org/gtd.org")

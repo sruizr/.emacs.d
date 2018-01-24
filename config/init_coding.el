@@ -48,3 +48,8 @@
 (use-package flycheck
   :ensure t
   )
+
+(use-package kivy-mode
+  :ensure t
+  :mode ("\\.kv\\" . kivy-mode)
+  )

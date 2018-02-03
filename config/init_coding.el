@@ -10,7 +10,7 @@
     ;; Use Flycheck instead of Flymake
     (when (require 'flycheck nil t)
       (remove-hook 'elpy-modules 'elpy-module-flymake)
-      (remove-hook 'elpy-modules 'elpy-module-yasnippet)
+;;      (remove-hook 'elpy-modules 'elpy-module-yasnippet)
 ;;      (remove-hook 'elpy-mode-hook 'elpy-module-highlight-indentation)
       (add-hook 'elpy-mode-hook 'flycheck-mode)
       )
@@ -47,4 +47,14 @@
       )
 (use-package flycheck
   :ensure t
+  )
+
+(use-package yasnippet
+  :ensure t
+  :init (add-hook 'prog-mode-hook #'yas-minor-mode)
+  :config
+  (progn
+    (yas-reload-all)
+    (setq yas-installed-snippets-dir "~/.emacs.d/snippets")
+    )
   )

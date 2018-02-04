@@ -58,3 +58,7 @@
     (setq yas-installed-snippets-dir "~/.emacs.d/snippets")
     )
   )
+(use-package kivy-mode
+  :ensure t
+  :mode "\\.kv\\'"
+  )

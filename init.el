@@ -35,7 +35,7 @@
 (require 'use-package)
 
 (load "~/.emacs.d/config/init_org.el")
-(load "~/.emacs.d/config/init_mail.el")
+;; (load "~/.emacs.d/config/init_mail.el")
 (load "~/.emacs.d/config/init_coding.el")
 
 ;; SETTING LOCALE UTF-8
@@ -77,7 +77,41 @@
   )
 
 (global-set-key (kbd "C-x C-t") 'hydra-transpose/body)
+(require 'windmove)
 
+(defun hydra-move-splitter-left (arg)
+  "Move window splitter left."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+	(windmove-find-other-window 'right))
+      (shrink-window-horizontally arg)
+    (enlarge-window-horizontally arg)))
+
+(defun hydra-move-splitter-right (arg)
+  "Move window splitter right."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+	(windmove-find-other-window 'right))
+      (enlarge-window-horizontally arg)
+    (shrink-window-horizontally arg)))
+
+(defun hydra-move-splitter-up (arg)
+  "Move window splitter up."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+	(windmove-find-other-window 'up))
+      (enlarge-window arg)
+    (shrink-window arg)))
+
+(defun hydra-move-splitter-down (arg)
+  "Move window splitter down."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+	(windmove-find-other-window 'up))
+      (shrink-window arg)
+    (enlarge-window arg)))
+
+(provide 'hydra-move-splitter)
 
  (defhydra hydra-window ()
    "
@@ -94,10 +128,10 @@ _SPC_ cancel	_o_nly this   	_d_elete
    ("j" windmove-down )
    ("k" windmove-up )
    ("l" windmove-right )
-   ("q" hydra-move-splitter-left/body)
-   ("w" hydra-move-splitter-down/body)
-   ("e" hydra-move-splitter-up/body)
-   ("r" hydra-move-splitter-right/body)
+   ("q" hydra-move-splitter-left)
+   ("w" hydra-move-splitter-down)
+   ("e" hydra-move-splitter-up)
+   ("r" hydra-move-splitter-right)
    ("b" helm-mini)
    ("f" helm-find-files)
    ("F" follow-mode)

@@ -22,4 +22,5 @@ games/
 var/
 abbrev_defs
 anaconda-mode/*
+*.*~
 *~

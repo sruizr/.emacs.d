@@ -1,5 +1,15 @@
 ;; activate all the packages (in particular autoloads)
-
+(use-package smartparens
+  :ensure ;
+  :diminish smartparens-mode
+  :config
+  (add-hook 'prog-mode-hook 'smartparens-mode)
+  )
+(use-package rainbow-delimiters
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+    )
 
 ; assure to install jedi, rope, flake8, importmagic
 (use-package elpy

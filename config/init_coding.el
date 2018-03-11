@@ -1,4 +1,8 @@
 ;; activate all the packages (in particular autoloads)
+(use-package yaml-mode
+  :ensure t
+  :mode "\\.yaml\\'"
+  )
 
 
 ; assure to install jedi, rope, flake8, importmagic

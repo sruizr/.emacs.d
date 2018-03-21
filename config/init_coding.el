@@ -4,7 +4,20 @@
   :mode "\\.yaml\\'"
   )
 
-
+  (use-package web-mode
+    :ensure t
+    :mode ("\\.html\\'")
+    :config
+    (progn
+      (setq web-mode-markup-indent-offset 2)
+      (setq web-mode-code-indent-offset 2)
+      (setq web-mode-enable-current-element-highlight t)
+      (setq web-mode-ac-sources-alist
+	    '(("css" . (ac-source-css-property))
+	      ("html" . (ac-source-words-in-buffer ac-source-abbrev)))
+	    )
+      )
+    )
 ; assure to install jedi, rope, flake8, importmagic
 (use-package elpy
   :ensure t
@@ -21,6 +34,8 @@
     (elpy-enable)
     ;; jedi is great
     (setq elpy-rpc-backend "jedi")
+    (setq elpy-rpc-python-command "python3")
+
     )
   )
 (add-hook 'python-mode-hook

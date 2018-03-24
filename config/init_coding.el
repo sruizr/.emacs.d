@@ -10,6 +10,10 @@
     :config
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
     )
+(use-package yaml-mode
+  :ensure t
+  :mode "\\.yaml\\'"
+  )
 
 ; assure to install jedi, rope, flake8, importmagic
 (use-package elpy

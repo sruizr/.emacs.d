@@ -10,9 +10,9 @@
 
 (require 'package)
 
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/"))
 
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
@@ -149,7 +149,7 @@ _SPC_ cancel	_o_nly this   	_d_elete
        )
    ("x" (lambda ()
           (interactive)
-          (split-window-below)
+	  (split-window-below)
           (windmove-down))
        )
    ("s" (lambda ()
@@ -216,9 +216,9 @@ _SPC_ cancel	_o_nly this   	_d_elete
   ("n" mc/mark-next-like-this)
   ("N" mc/skip-to-next-like-this)
   ("M-n" mc/unmark-next-like-this)
-  ("p" mc/mark-nevious-like-this)
-  ("P" mc/skip-to-nevious-like-this)
-  ("M-p" mc/unmark-nevious-like-this)
+  ("p" mc/mark-previous-like-this)
+  ("P" mc/skip-to-previous-like-this)
+  ("M-p" mc/unmark-previous-like-this)
   ("r" mc/mark-all-in-region :exit t)
   ("q" nil)
   ("<mouse-1>" mc/add-cursor-on-click)
@@ -261,10 +261,31 @@ _SPC_ cancel	_o_nly this   	_d_elete
     ("cf08ae4c26cacce2eebff39d129ea0a21c9d7bf70ea9b945588c1c66392578d1" "52588047a0fe3727e3cd8a90e76d7f078c9bd62c0b246324e557dfa5112e0d0c" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "f8cf128fa0ef7e61b5546d12bb8ea1584c80ac313db38867b6e774d1d38c73db" "1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" default)))
  '(fci-rule-color "#424242")
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
+ '(org-agenda-custom-commands
+   (quote
+    (("c" "Simple agenda view"
+      ((todo "NEXT" nil)
+       (tags-todo "+PRIORITY=\"A\"" nil)
+       (tags-todo "+PRIORITY=\"B\"" nil)
+       (agenda "" nil)
+       (alltodo ""
+		((org-agenda-skip-function
+		  (quote
+		   (or
+		    (air-org-skip-subtree-if-priority 65)
+		    (org-agenda-skip-if nil
+					(quote
+					 (scheduled deadline)))))))))
+      nil)
+     ("r" "Reunión"
+      ((todo "TASK" nil)
+       (todo "DELEGATED" nil))
+      nil))) t)
+ '(org-agenda-files (quote ("~/AKO/Org/gtd.org")))
  '(package-hidden-regexps (quote ("helm-projectile")))
  '(package-selected-packages
    (quote
-    (counsel spaceline multiple-cursors try color-theme-sanityinc-tomorrow helm-projectile hydra magit use-package transpose-frame projectile org-bullets hydra elpy dash)))
+    (web-mode rainbow-delimiters smartparens try color-theme-sanityinc-tomorrow helm-projectile hydra magit use-package transpose-frame projectile org-bullets hydra elpy dash)))
  '(send-mail-function (quote smtpmail-send-it))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map

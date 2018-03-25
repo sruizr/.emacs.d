@@ -23,6 +23,7 @@
 ;; (setq custom-file "~/.emacs.d/custom.el")
 ;; (load custom-file)
 
+(setq inhibit-splash-screen t)
 
 ;; Using use-package from now
 (unless (package-installed-p 'use-package)
@@ -35,7 +36,7 @@
 (require 'use-package)
 
 (load "~/.emacs.d/config/init_org.el")
-;; (load "~/.emacs.d/config/init_mail.el")
+(load "~/.emacs.d/config/init_mail.el")
 (load "~/.emacs.d/config/init_coding.el")
 
 ;; SETTING LOCALE UTF-8
@@ -263,7 +264,7 @@ _SPC_ cancel	_o_nly this   	_d_elete
  '(package-hidden-regexps (quote ("helm-projectile")))
  '(package-selected-packages
    (quote
-    (try color-theme-sanityinc-tomorrow helm-projectile hydra magit use-package transpose-frame projectile org-bullets hydra elpy dash)))
+    (counsel spaceline multiple-cursors try color-theme-sanityinc-tomorrow helm-projectile hydra magit use-package transpose-frame projectile org-bullets hydra elpy dash)))
  '(send-mail-function (quote smtpmail-send-it))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map

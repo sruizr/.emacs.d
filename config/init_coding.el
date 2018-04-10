@@ -1,11 +1,49 @@
 ;; activate all the packages (in particular autoloads)
+(use-package smartparens
+  :ensure ;
+  :diminish smartparens-mode
+  :config
+  (add-hook 'prog-mode-hook 'smartparens-mode)
+  )
+(use-package rainbow-delimiters
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+    )
 (use-package yaml-mode
   :ensure t
   :mode "\\.yaml\\'"
   )
 
+  (use-package web-mode
+    :ensure t
+    :mode ("\\.html\\'")
+    :config
+    (progn
+      (setq web-mode-markup-indent-offset 2)
+      (setq web-mode-code-indent-offset 2)
+      (setq web-mode-enable-current-element-highlight t)
+      (setq web-mode-ac-sources-alist
+	    '(("css" . (ac-source-css-property))
+	      ("html" . (ac-source-words-in-buffer ac-source-abbrev)))
+	    )
+      (set
+       (make-local-variable 'company-backends)
+       '(company-css company-web-html company-yasnippet company-files)
+       )
+      )
+    )
 
-; assure to install jedi, rope, flake8, importmagic
+(use-package company
+    :ensure t
+    :diminish
+    :config
+    (add-hook 'after-init-hook 'global-company-mode)
+
+    (setq company-idle-delay t)
+    )
+
+;; assure to install jedi, rope, flake8, importmagic
 (use-package elpy
   :ensure t
   :defer 2
@@ -21,6 +59,8 @@
     (elpy-enable)
     ;; jedi is great
     (setq elpy-rpc-backend "jedi")
+    (setq elpy-rpc-python-command "python3")
+
     )
   )
 (add-hook 'python-mode-hook

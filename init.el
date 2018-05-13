@@ -38,6 +38,7 @@
 (load "~/.emacs.d/config/init_org.el")
 (load "~/.emacs.d/config/init_mail.el")
 (load "~/.emacs.d/config/init_coding.el")
+;; (load "~/.emacs.d/config/AKO.el")
 
 ;; SETTING LOCALE UTF-8
 (setq locale-coding-system 'utf-8)
@@ -281,7 +282,6 @@ _SPC_ cancel	_o_nly this   	_d_elete
       ((todo "TASK" nil)
        (todo "DELEGATED" nil))
       nil))) t)
- '(org-agenda-files (quote ("~/AKO/Org/gtd.org")))
  '(package-hidden-regexps (quote ("helm-projectile")))
  '(package-selected-packages
    (quote

@@ -36,7 +36,7 @@
 (require 'use-package)
 
 (load "~/.emacs.d/config/init_org.el")
-(load "~/.emacs.d/config/init_mail.el")
+;; (load "~/.emacs.d/config/init_mail.el")
 (load "~/.emacs.d/config/init_coding.el")
 
 ;; SETTING LOCALE UTF-8
@@ -264,10 +264,11 @@ _SPC_ cancel	_o_nly this   	_d_elete
  '(org-agenda-custom-commands
    (quote
     (("c" "Simple agenda view"
-      ((todo "NEXT" nil)
-       (tags-todo "+PRIORITY=\"A\"" nil)
-       (tags-todo "+PRIORITY=\"B\"" nil)
-       (agenda "" nil)
+      ((tags-todo "+PRIORITY=\"A\"")
+       (tags-todo "+PRIORITY=\"B\"")
+       (tags-todo "+PRIORITY=\"C\"")
+       (todo "NEXT")
+       (agenda "")
        (alltodo ""
 		((org-agenda-skip-function
 		  (quote
@@ -275,12 +276,11 @@ _SPC_ cancel	_o_nly this   	_d_elete
 		    (air-org-skip-subtree-if-priority 65)
 		    (org-agenda-skip-if nil
 					(quote
-					 (scheduled deadline)))))))))
-      nil)
+					 (scheduled deadline)))))))
+		nil)))
      ("r" "Reunión"
-      ((todo "TASK" nil)
-       (todo "DELEGATED" nil))
-      nil))) t)
+      ((todo "TASK")
+       (todo "DELEGATED"))))))
  '(org-agenda-files (quote ("~/AKO/Org/gtd.org")))
  '(package-hidden-regexps (quote ("helm-projectile")))
  '(package-selected-packages

@@ -13,18 +13,21 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
         (pri-current (org-get-priority (thing-at-point 'line t))))
     (if (= pri-value pri-current)
         subtree-end
-      nil)))
+      nil)
+    )
+  )
+
 
 (setq org-src-fontify-natively t)
 
 ;; ORG-BULLETS
 (use-package org-bullets
-:init
-(setq org-bullets-bullet-list
-'("◉" "◎" "⚫" "○" "►" "◇"))
-:config
-(setcdr org-bullets-bullet-map nil)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  :init
+  (setq org-bullets-bullet-list
+	'("◉" "◎" "⚫" "○" "►" "◇"))
+  :config
+  (setcdr org-bullets-bullet-map nil)
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 )
 
 (setq org-refile-targets '((org-agenda-files :maxlevel . 4)))
@@ -47,36 +50,35 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
    )
    )
  )
+
 (setq org-agenda-custom-commands
       '(
 	("c" "Simple agenda view"
 	 (
-	  (tags-todo "+TODO=\"NEXT\"+PRIORITY<=\"C\""
+	  (tags-todo "+TODO=\"NEXT\""
 		     (
 		      (org-agenda-overriding-header "Próximas acciones:")
 		      (org-agenda-skip-function
 		       '(org-agenda-skip-entry-if 'notregexp "\[#[A-E]\]")
 		      )
 		      )
-		   )
+		     )
+	  (agenda "")
 	  ;; (tags-todo "+PRIORITY=\"A\"")
 	  ;; (tags-todo "+PRIORITY=\"B\"")
 	  ;; (tags-todo "+PRIORITY=\"C\"" )
 	  ;; (tags-todo "+PRIORITY<=\"D\"")
-	  (agenda "")
 	  (alltodo ""
-		   (
-		    (org-agenda-overriding-header "Acciones sin planificar:")
-		    (org-agenda-skip-function
-		     '(or
-		       '(
-			 (org-agenda-skip-entry-if 'regexp "\[#[A-E]\]")
-			 (org-agenda-skip-if nil '(scheduled deadline))
-			 )
-		       )
+	  	   (
+	  	    (org-agenda-overriding-header "Acciones sin planificar:")
+	  	    (org-agenda-skip-function
+	  	     '(or
+	  		 (org-agenda-skip-entry-if 'regexp "\[#[A-E]\]")
+	  		 (org-agenda-skip-if nil '(scheduled deadline))
+	  		 )
 		     )
-		   nil
-		   )
+		    )
+	  	   )
 	  )
 	 )
 	("r" "Reunión"

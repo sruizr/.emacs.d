@@ -63,12 +63,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 		      )
 		      )
 		     )
-	  (agenda "")
-	  ;; (tags-todo "+PRIORITY=\"A\"")
-	  ;; (tags-todo "+PRIORITY=\"B\"")
-	  ;; (tags-todo "+PRIORITY=\"C\"" )
-	  ;; (tags-todo "+PRIORITY<=\"D\"")
-	  (alltodo ""
+	  (tags-todo "+TODO=\"NEXT\""
 	  	   (
 	  	    (org-agenda-overriding-header "Acciones sin planificar:")
 	  	    (org-agenda-skip-function
@@ -79,6 +74,14 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 		     )
 		    )
 	  	   )
+	  (tags-todo "+TODO=\"TODO\""
+	  	   (
+	  	    (org-agenda-overriding-header "Acciones pendientes:")
+	  	    (org-agenda-skip-function
+	  	     '(org-agenda-skip-if nil '(scheduled deadline))
+		    )
+	  	   )
+		   )
 	  )
 	 )
 	("r" "Reunión"

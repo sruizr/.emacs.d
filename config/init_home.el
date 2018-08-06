@@ -15,8 +15,8 @@
           :leave-func (lambda () (mu4e-message "Saliendo de contexto Orange"))
           ;; we match based on the contact-fields of the message
           :match-func (lambda (msg)
-                        (when msg 
-                          (mu4e-message-contact-field-matches msg 
+                        (when msg
+                          (mu4e-message-contact-field-matches msg
                             :to "s.ruiz.r@orange.es")))
           :vars '( ( user-mail-address      . "s.ruiz.r@orange.es"  )
                    ( user-full-name         . "Salvador Ruiz" )
@@ -37,8 +37,8 @@
           ;; no leave-func
           ;; we match based on the contact-fields of the message
           :match-func (lambda (msg)
-                        (when msg 
-                          (mu4e-message-contact-field-matches msg 
+                        (when msg
+                          (mu4e-message-contact-field-matches msg
                             :to "salvador.ruiz.r@gmail.com")))
           :vars '( (  user-mail-address       . "salvador.ruiz.r@gmail.com" )
 		    (user-full-name          . "Salvador Ruiz" )
@@ -77,3 +77,6 @@
     (local-set-key (kbd "<backtab>") 'shr-previous-link)))
 
 (global-set-key (kbd "C-<f6>") 'mu4e)
+
+
+(find-file "~/Dropbox/Org/gtd.org")

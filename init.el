@@ -34,11 +34,11 @@
 (setq use-package-verbose t)
 
 (require 'use-package)
-
+;; (load "~/.emacs.d/ako.el")
 (load "~/.emacs.d/config/init_org.el")
-(load "~/.emacs.d/config/init_mail.el")
+(load "~/.emacs.d/config/init_home.el")
 (load "~/.emacs.d/config/init_coding.el")
-;; (load "~/.emacs.d/config/AKO.el")
+;; (load "~/.emacs.d/config/init_ako.el")
 
 ;; SETTING LOCALE UTF-8
 (setq locale-coding-system 'utf-8)
@@ -262,30 +262,10 @@ _SPC_ cancel	_o_nly this   	_d_elete
     ("cf08ae4c26cacce2eebff39d129ea0a21c9d7bf70ea9b945588c1c66392578d1" "52588047a0fe3727e3cd8a90e76d7f078c9bd62c0b246324e557dfa5112e0d0c" "7f1263c969f04a8e58f9441f4ba4d7fb1302243355cb9faecb55aec878a06ee9" "f8cf128fa0ef7e61b5546d12bb8ea1584c80ac313db38867b6e774d1d38c73db" "1157a4055504672be1df1232bed784ba575c60ab44d8e6c7b3800ae76b42f8bd" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" default)))
  '(fci-rule-color "#424242")
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
- '(org-agenda-custom-commands
-   (quote
-    (("c" "Simple agenda view"
-      ((todo "NEXT" nil)
-       (tags-todo "+PRIORITY=\"A\"" nil)
-       (tags-todo "+PRIORITY=\"B\"" nil)
-       (agenda "" nil)
-       (alltodo ""
-		((org-agenda-skip-function
-		  (quote
-		   (or
-		    (air-org-skip-subtree-if-priority 65)
-		    (org-agenda-skip-if nil
-					(quote
-					 (scheduled deadline)))))))))
-      nil)
-     ("r" "Reunión"
-      ((todo "TASK" nil)
-       (todo "DELEGATED" nil))
-      nil))) t)
  '(package-hidden-regexps (quote ("helm-projectile")))
  '(package-selected-packages
    (quote
-    (web-mode rainbow-delimiters smartparens try color-theme-sanityinc-tomorrow helm-projectile hydra magit use-package transpose-frame projectile org-bullets hydra elpy dash)))
+    (counsel spaceline web-mode rainbow-delimiters smartparens try color-theme-sanityinc-tomorrow helm-projectile hydra magit use-package transpose-frame projectile org-bullets hydra elpy dash)))
  '(send-mail-function (quote smtpmail-send-it))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
@@ -340,8 +320,8 @@ _SPC_ cancel	_o_nly this   	_d_elete
 ;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 ;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 ;; (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-(global-set-key [(M-<Up>)]  'move-line-up)
-(global-set-key [(M-<Down>)]  'move-line-down)
+(global-set-key [<M-up>]  'move-line-up)
+(global-set-key [<M-down>]  'move-line-down)
 
 
 ;  (use-package powerline

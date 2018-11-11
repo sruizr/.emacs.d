@@ -63,8 +63,10 @@
 
     )
   )
+
 (add-hook 'python-mode-hook
 	  'linum-mode
+	  'elpy-mode
 	  (add-hook 'before-save-hook 'delete-trailing-whitespace)
 	  )
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -76,6 +78,8 @@
 
 
 (use-package projectile
+  :config
+  (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
   )
 (projectile-global-mode)
 

@@ -49,3 +49,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
    )
    )
  )
+
+(org-babel-do-load-languages
+'org-babel-load-languages
+'((dot . t)))

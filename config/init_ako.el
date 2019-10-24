@@ -1,4 +1,4 @@
-'(org-agenda-files (quote ("~/AKO/Org/gtd.org")))
+(setq org-agenda-files '("~/AKO/Org/gtd.org"))
 
 (find-file "/home/sruiz/AKO/Org/gtd.org")
 (setq org-default-notes-file "/home/sruiz/AKO/Org/gtd.org")

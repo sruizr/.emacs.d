@@ -40,6 +40,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 
 ;; (setq org-default-notes-file "~/home/sruiz/Dropbox/Org/inbox.org")
 
+(find-file "/home/sruiz/AKO/Org/inbox.org")
 (find-file "/home/sruiz/AKO/Org/gtd.org")
 (setq org-default-notes-file "/home/sruiz/AKO/Org/gtd.org")
 
@@ -92,3 +93,8 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 	 )
 	)
       )
+
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t))) ; this line activates dot

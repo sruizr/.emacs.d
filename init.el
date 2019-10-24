@@ -349,7 +349,7 @@ _SPC_ cancel	_o_nly this   	_d_elete
   )
 
 (use-package swiper
-  :ensure try
+  :ensure t
   :config
   (progn
     (ivy-mode 1)

@@ -68,6 +68,10 @@
     (setq elpy-rpc-python-command "python3")
 
     )
+  :bind (
+	 ("C-c C-n" . next-error)
+	 ("C-c C-p" . previous-error)
+	 )
   )
 (add-hook 'python-mode-hook
 	  'linum-mode
@@ -75,14 +79,19 @@
 	  )
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status))
+
   )
 
 
 (use-package projectile
-  )
+  :config
+  (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
 (projectile-global-mode)
 
 (use-package helm-projectile
@@ -108,7 +117,10 @@
     (setq yas-installed-snippets-dir "~/.emacs.d/snippets")
     )
   )
-(use-package kivy-mode
+(use-package markdown-mode
   :ensure t
-  :mode "\\.kv\\'"
-  )
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))

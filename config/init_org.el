@@ -3,6 +3,8 @@
 (bind-key "C-c l" 'org-store-link)
 (bind-key "C-c c" 'org-capture)
 (bind-key "C-c a" 'org-agenda)
+(bind-key  (kbd "<M-return>") 'org-meta-return)
+(bind-key (kbd "<M-enter>") 'org-meta-return)
 
 (defun air-org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.
@@ -18,7 +20,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
   )
 
 
-(setq org-src-fontify-natively t)
+(setq org-src-fontify-nativey t)
 
 ;; ORG-BULLETS
 (use-package org-bullets
@@ -51,7 +53,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
    )
    )
  )
-
 (setq org-agenda-custom-commands
       '(
 	("c" "Simple agenda view"

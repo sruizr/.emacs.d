@@ -338,9 +338,8 @@ _SPC_ cancel	_o_nly this   	_d_elete
   )
 (use-package yasnippet)
 (add-hook 'focus-out-hook (
-
 			   lambda () (save-some-buffers t)
-				  )
+			  )
 	  )
 
 ;; it looks like counsel is a requirement for swiper

@@ -1,4 +1,13 @@
-(setq org-agenda-files '("~/AKO/Org/gtd.org"))
+
+;; (setq org-agenda-files (list "~/AKO/org/tasks.org"
+;;                              "~/.org/tasks.org_archive"
+;;                              "~/.org/projects.org"
+;;                              "~/.org/projects.org_archive"
+;;                              "~/.org/job.org"
+;;                              "~/.org/job.org_archive"
+;;                              "~/.org/calendar.org"))
+
+(setq org-agenda-files '("~/AKO/Org"))
 
 (find-file "/home/sruiz/AKO/Org/gtd.org")
 (setq org-default-notes-file "/home/sruiz/AKO/Org/gtd.org")

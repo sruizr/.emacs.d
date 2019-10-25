@@ -1,0 +1,5 @@
+#+TODO:  TODO(t) NEXT(n) | DONE(d!) CANCELED(c@)
+#+TODO: TASK(f) DELEGATED(l!) | DONE(d!) CANCELED(c@)
+#+STARTUP: logdone
+#+TAGS: jVillaubi aRilo  jSantos  aSerra fPalazon  gGarcia
+#+PRIORITIES: A E C

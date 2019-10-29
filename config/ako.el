@@ -1,4 +1,3 @@
-
 ;; (setq org-agenda-files (list "~/AKO/org/tasks.org"
 ;;                              "~/.org/tasks.org_archive"
 ;;                              "~/.org/projects.org"
@@ -49,4 +48,5 @@
 	  )
 	 )
 	)
+
       )

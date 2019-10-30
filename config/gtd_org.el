@@ -19,14 +19,6 @@
 
 (use-package org-pomodoro)
 
-(setq org-capture-templates
-      '(("r" "Todo" entry (file+headline "~/.org/inbox.org" "Inbox")
-         "* TODO %?")
-        ("j" "Journal" entry (file+datetree "~/.org/journal.org")
-         (file "~/.org/templates/review"))
-	)
-      )
-
 
 (define-key global-map "\C-cr"
   (lambda () (interactive) (org-capture nil "r")))

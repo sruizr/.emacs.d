@@ -13,6 +13,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
@@ -35,12 +36,15 @@
 
 (require 'use-package)
 (load "~/.emacs.d/config/common.el")
-(load "~/.emacs.d/config/init_org.el")
-(load "~/.emacs.d/config/init_coding.el")
+(load "~/.emacs.d/config/common_org.el")
+(load "~/.emacs.d/config/gtd_org.el")
+(load "~/.emacs.d/config/coding.el")
 
 ;; Choose your environment !!
-;; (load "~/.emacs.d/config/ako.el")
-(load "~/.emacs.d/config/home.el")
+(load "~/.emacs.d/config/ako.el")
+;; (load "~/.emacs.d/config/home.el")
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -58,7 +62,7 @@
  '(package-hidden-regexps (quote ("helm-projectile")))
  '(package-selected-packages
    (quote
-    (org-habit org-journal org-pomodoro counsel spaceline web-mode rainbow-delimiters smartparens try color-theme-sanityinc-tomorrow helm-projectile hydra magit use-package transpose-frame projectile org-bullets hydra elpy dash)))
+    (org 0blayout org-journal org-habit org-pomodoro counsel spaceline web-mode rainbow-delimiters smartparens try color-theme-sanityinc-tomorrow helm-projectile hydra magit use-package transpose-frame projectile org-bullets hydra elpy dash)))
  '(send-mail-function (quote smtpmail-send-it))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map

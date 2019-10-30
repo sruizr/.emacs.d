@@ -1,5 +1,4 @@
 ;; ORG agenda
-
 (bind-key "C-c l" 'org-store-link)
 (bind-key "C-c c" 'org-capture)
 (bind-key "C-c a" 'org-agenda)
@@ -14,7 +13,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
         (pri-value (* 1000 (- org-lowest-priority priority)))
         (pri-current (org-get-priority (thing-at-point 'line t))))
     (if (= pri-value pri-current)
-        subtree-end
+       subtree-end
       nil)
     )
   )
@@ -22,7 +21,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 
 (setq org-src-fontify-nativey t)
 
-;; ORG-BULLETS
+;; Replace ** cascade to bullets!
 (use-package org-bullets
   :init
   (setq org-bullets-bullet-list
@@ -53,6 +52,10 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
    )
    )
  )
+
+(org-babel-do-load-languages
+'org-babel-load-languages
+'((dot . t)))
 (setq org-agenda-custom-commands
       '(
 	("c" "Simple agenda view"

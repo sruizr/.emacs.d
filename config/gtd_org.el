@@ -97,19 +97,23 @@
                  (org-agenda-sorting-strategy
                   '(category-keep)))))
 
-  (defun rmh/agendablock-loose-tasks ()
-    `(tags-todo "/+TODO"
-                ((org-agenda-overriding-header "Tasks not belonging to a project")
-                 (org-agenda-skip-function
-                  (org-query-select "headline" (and
+(defun rmh/agendablock-loose-tasks ()
+
+  `(tags-todo "/+TODO"
+	      ((org-agenda-overriding-header "Tasks not belonging to a project")
+	       (org-agenda-skip-function
+		(org-query-select "headline"
+				  ;; (and
 		  (org-query-gtd-loose-task)
-		  (not (org-is-habit-p)))
-		  ))
-                 (org-agenda-todo-ignore-scheduled 't)
-                 (org-agenda-todo-ignore-deadlines 't)
-                 (org-agenda-todo-ignore-with-date 't)
-                 (org-agenda-sorting-strategy
-                  '(category-keep)))))
+		  ;; (not (org-is-habit-p))
+		;;  )
+		))
+                 ;; (org-agenda-todo-ignore-scheduled 't)
+                 ;; (org-agenda-todo-ignore-deadlines 't)
+                 ;; (org-agenda-todo-ignore-with-date 't)
+                 ;;(org-agenda-sorting-strategy
+;; '(category-keep)
+)))
 
   (defun rmh/agendablock-checklists ()
     `(tags "CHECKLIST"

@@ -32,7 +32,7 @@
 
 ;; Projects
 
-(defun org-query-gtd-active-project () 
+(defun org-query-gtd-active-project ()
   "Is the headline at point an active project"
   (and
    (not (org-query-parent (org-query-stringmatch "^Someday / Maybe")))
@@ -40,14 +40,14 @@
    (org-query-todo '("NEXT"))))
 
 
-(defun org-query-gtd-project () 
+(defun org-query-gtd-project ()
   "Is the headline at point a waiting project"
   (and
    (not (org-query-parent (org-query-stringmatch "^Someday / Maybe")))
    (org-query-child (org-query-todo))))
 
 
-(defun org-query-gtd-someday-project () 
+(defun org-query-gtd-someday-project ()
   "Is the headline at point a waiting project"
   (and
    (org-query-parent (org-query-stringmatch "^Someday / Maybe"))

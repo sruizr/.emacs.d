@@ -41,8 +41,8 @@
 (load "~/.emacs.d/config/coding.el")
 
 ;; Choose your environment !!
-(load "~/.emacs.d/config/ako.el")
-;; (load "~/.emacs.d/config/home.el")
+;; (load "~/.emacs.d/config/ako.el")
+(load "~/.emacs.d/config/home.el")
 
 
 (custom-set-variables

@@ -47,8 +47,6 @@
 	))
 
 (setq org-agenda-files '("~/AKO/Org"))
-
-(find-file "/home/sruiz/AKO/Org/inbox.org")
 (setq org-default-notes-file "/home/sruiz/AKO/Org/inbox.org")
 
 ;; (setq org-agenda-custom-commands
@@ -88,5 +86,4 @@
 ;; 	  )
 ;; 	 )
 ;; 	)
-
 ;;       )

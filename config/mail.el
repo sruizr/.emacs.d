@@ -51,6 +51,26 @@
 	  	   (smtpmail-smtp-service . 587)
 		 )
        )
+       ,(make-mu4e-context
+          :name "gmx"
+          :enter-func (lambda () (mu4e-message "Entrando en GMX"))
+          ;; no leave-func
+          ;; we match based on the contact-fields of the message
+          :match-func (lambda (msg)
+                        (when msg
+                          (mu4e-message-contact-field-matches msg
+                            :to "sruiz@gmx.com")))
+          :vars '( (  user-mail-address       . "sruiz@gmx.com" )
+		    (user-full-name          . "Salvador Ruiz" )
+	  	   (mu4e-sent-folder . "/gmx/Saved Items")
+	  	   (mu4e-drafts-folder . "/gmx/Drafts")
+	  	   (user-mail-address . "sruiz@gmx.com")
+	  	   (smtpmail-default-smtp-server . "mail.gmx.com")
+	  	   (smtpmail-smtp-user . "sruiz@gmx.com")
+	  	   (smtpmail-smtp-server . "mail.gmx.com")
+	  	   (smtpmail-smtp-service . 587)
+		 )
+       )
      )
 )
 
@@ -68,7 +88,7 @@
 (setq shr-color-visible-luminance-min 80)
 (setq mu4e-update-interval 300)
 (setq mu4e-msg2pdf "/usr/bin/msg2pdf")
-(setq mu4e-get-mail-command "getmail -r orange -r gmail"
+(setq mu4e-get-mail-command "getmail -r orange -r gmail -r gmx"
       mu4e-update-interval 300)
 (add-hook 'mu4e-view-mode-hook
   (lambda()

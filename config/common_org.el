@@ -5,6 +5,7 @@
 (bind-key  (kbd "<M-return>") 'org-meta-return)
 (bind-key (kbd "<M-enter>") 'org-meta-return)
 
+
 (defun air-org-skip-subtree-if-priority (priority)
   "Skip an agenda subtree if it has a priority of PRIORITY.
 
@@ -41,9 +42,9 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 
 ;; (setq org-default-notes-file "~/home/sruiz/Dropbox/Org/inbox.org")
 
-(find-file "/home/sruiz/AKO/Org/inbox.org")
-(find-file "/home/sruiz/AKO/Org/gtd.org")
-(setq org-default-notes-file "/home/sruiz/AKO/Org/gtd.org")
+;; (find-file "/home/sruiz/AKO/Org/inbox.org")
+;; (find-file "/home/sruiz/AKO/Org/gtd.org")
+;; (setq org-default-notes-file "/home/sruiz/AKO/Org/gtd.org")
 
 (setq org-agenda-sorting-strategy
  (quote
@@ -53,9 +54,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
    )
  )
 
-(org-babel-do-load-languages
-'org-babel-load-languages
-'((dot . t)))
+
 ;; (setq org-agenda-custom-commands
 ;;       '(
 ;; 	("c" "Simple agenda view"

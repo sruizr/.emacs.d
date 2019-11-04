@@ -36,13 +36,13 @@
 
 (require 'use-package)
 (load "~/.emacs.d/config/common.el")
-(load "~/.emacs.d/config/common_org.el")
-(load "~/.emacs.d/config/gtd_org.el")
 (load "~/.emacs.d/config/coding.el")
 
 ;; Choose your environment !!
 ;; (load "~/.emacs.d/config/ako.el")
 (load "~/.emacs.d/config/home.el")
+(load "~/.emacs.d/config/common_org.el")
+(load "~/.emacs.d/config/gtd_org.el")
 
 
 (custom-set-variables
@@ -62,7 +62,7 @@
  '(package-hidden-regexps (quote ("helm-projectile")))
  '(package-selected-packages
    (quote
-    (org 0blayout org-journal org-habit org-pomodoro counsel spaceline web-mode rainbow-delimiters smartparens try color-theme-sanityinc-tomorrow helm-projectile hydra magit use-package transpose-frame projectile org-bullets hydra elpy dash)))
+    (org 0blayout org-habit org-pomodoro counsel spaceline web-mode rainbow-delimiters smartparens try color-theme-sanityinc-tomorrow helm-projectile hydra magit use-package transpose-frame projectile org-bullets hydra elpy dash)))
  '(send-mail-function (quote smtpmail-send-it))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map

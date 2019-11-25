@@ -2,13 +2,13 @@
       '(
 	  (sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
 	  (sequence "WAITING(w@/!)" "HOLD(h@/!)" "SOMEDAY(o)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
-	  (sequence "TASK(f)"  "GAVE(l!)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
 	)
       )
 
 (setq org-highest-priority 65)
 (setq org-lowest-priority 69)
-(setq org-default-priority 67)
+(setq org-default-priority 69)
+
 (print (concat org-base-path "inbox.org"))
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline (lambda()(concat org-base-path "/inbox.org")) "Inbox")
@@ -64,20 +64,24 @@
                  (org-agenda-todo-ignore-deadlines t)
                  )))
 
-  (defun rmh/agendablock-next-in-active ()
-    `(tags-todo "/+NEXT"
-                ((org-agenda-overriding-header "Next tasks in active projects")
-                 (org-agenda-skip-function (
-		 org-query-select "headline" (
-		 org-query-gtd-active-project-next-task)))
-                 (org-tags-match-list-sublevels t)
-                 (org-agenda-todo-ignore-scheduled 't)
-                 (org-agenda-todo-ignore-deadlines 't)
-                 (org-agenda-todo-ignore-with-date 't)
-                 (org-agenda-sorting-strategy
-                  '(todo-state-down effort-up category-keep)))))
+(defun rmh/agendablock-next-in-active ()
+  `(tags-todo "/+NEXT"
+	      ((org-agenda-overriding-header "Next tasks in active projects")
+	       (org-agenda-skip-function (
+					  org-query-select "headline" (
+								       org-query-gtd-active-project-next-task)
+							   )
+					 )
+	       (org-tags-match-list-sublevels 't)
+	       (org-agenda-todo-ignore-scheduled 't)
+	       (org-agenda-todo-ignore-deadlines 't)
+	       (org-agenda-todo-ignore-with-date 't)
+	       (org-agenda-sorting-strategy '(priority-down))
+	       )
+	      )
+  )
 
-  (defun rmh/agendablock-backlog-of-active ()
+(defun rmh/agendablock-backlog-of-active ()
     `(tags-todo "/+TODO"
                 ((org-agenda-overriding-header "Backlog of active projects")
                  (org-agenda-skip-function (org-query-select "headline" (org-query-gtd-backlog-task)))
@@ -85,7 +89,7 @@
                  (org-agenda-todo-ignore-deadlines 't)
                  (org-agenda-todo-ignore-with-date 't)
                  (org-agenda-sorting-strategy
-                  '(category-keep)))))
+                  '(priority-down )))))
 
   (defun rmh/agendablock-active-projects-without-next ()
     `(tags-todo "/+NEXT"
@@ -112,9 +116,25 @@
                   '(category-keep)))))
 
 (defun rmh/agendablock-loose-tasks ()
-
   `(tags-todo "/+TODO"
 	      ((org-agenda-overriding-header "Tasks not belonging to a project")
+	       (org-agenda-skip-function
+		(org-query-select "headline"
+				  ;; (and
+		  (org-query-gtd-loose-task)
+		  ;; (not (org-is-habit-p))
+		;;  )
+		))
+                 ;; (org-agenda-todo-ignore-scheduled 't)
+                 ;; (org-agenda-todo-ignore-deadlines 't)
+                 ;; (org-agenda-todo-ignore-with-date 't)
+                 ;;(org-agenda-sorting-strategy
+;; '(category-keep)
+	       )))
+
+(defun sr/agendablock-next-role-tasks ()
+  `(tags-todo "/+NEXT"
+	      ((org-agenda-overriding-header "Next tasks related to role")
 	       (org-agenda-skip-function
 		(org-query-select "headline"
 				  ;; (and
@@ -138,10 +158,28 @@
   `(tags-todo "LEVEL=2"
               ((org-agenda-overriding-header "Tasks to refile")
                (org-agenda-skip-function (org-query-select "tree" (org-query-gtd-refile)))
-               (org-tags-match-list-sublevels nil))))
+               (org-tags-match-list-sublevels nil))
+	      )
+  )
 
-(defun /to-be-delegated ()
-  `(tags-todo )
+(defun sr/to-be-delegated ()
+  `(tags-todo "/+TODO"
+	      ((org-agenda-overriding-header "Tasks to delegate")
+	       (org-agenda-skip-function (org-query-select "headline"
+							   (org-query-stringmatch ":2")
+							   ))
+	       )
+    )
+  )
+
+(defun sr/delegated ()
+  `(tags-todo "/+WAITING"
+	      ((org-agenda-overriding-header "Delegated tasks")
+	       (org-agenda-skip-function (org-query-select "headline"
+							   (org-query-todo '("WAITING"))
+							   ))
+	       )
+    )
   )
 
   (setq org-agenda-custom-commands
@@ -149,11 +187,12 @@
 	  (" " "Agenda"
           ((agenda "" ((org-agenda-ndays 1)))
            ,(rmh/agendablock-inbox)
-           ,(rmh/agendablock-tasks-waiting)
+           ;; ,(rmh/agendablock-tasks-waiting)
            ,(rmh/agendablock-next-in-active)
-           ,(rmh/agendablock-active-projects-with-next)
-           ,(rmh/agendablock-active-projects-without-next)
-           ,(rmh/agendablock-waiting-projects)
+	   ,(sr/agendablock-next-role-tasks)
+           ;; ,(rmh/agendablock-active-projects-with-next)
+           ;; ,(rmh/agendablock-active-projects-without-next)
+           ;; ,(rmh/agendablock-waiting-projects)
            ,(rmh/agendablock-backlog-of-active)
            ,(rmh/agendablock-checklists))
           nil)
@@ -170,6 +209,8 @@
            nil)
 	  ("b" "Blockers"
 	   ((agenda "" ((org-agenda-ndays 1)))
+	    ,(sr/to-be-delegated)
+	    ,(sr/delegated)
 	    )
 	   )
 	)

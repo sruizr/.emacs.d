@@ -1,6 +1,6 @@
 (setq org-todo-keywords
       '(
-	(sequence "TODO(t)" "NEXTg(n)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
+	(sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
         (sequence "WAITING(w@/!)" "HOLD(h@/!)" "SOMEDAY(o)" "|" "CANCELLED(c@/!)")
 	(sequence "TASK(f)"  "DELEGATED(l!)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
 	)

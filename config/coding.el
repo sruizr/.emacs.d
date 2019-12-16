@@ -65,8 +65,7 @@
     (elpy-enable)
     ;; jedi is great
     (setq elpy-rpc-backend "jedi")
-    (setq elpy-rpc-python-command "python3")
-
+    (setq elpy-rpc-python-command "python3.7")
     )
   :bind (
 	 ("C-c C-n" . next-error)

@@ -41,7 +41,6 @@
 	))
 
 ;; Ajusta el color de las etiquetas
-
 (setq org-tag-faces
       '(
 	("#Personal" . (:foreground "Green"))

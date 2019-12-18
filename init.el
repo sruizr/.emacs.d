@@ -39,8 +39,8 @@
 (load "~/.emacs.d/config/coding.el")
 
 ;; Choose your environment !!
-(load "~/.emacs.d/config/ako.el")
-;; (load "~/.emacs.d/config/home.el")
+;(load "~/.emacs.d/config/ako.el")
+(load "~/.emacs.d/config/home.el")
 (load "~/.emacs.d/config/common_org.el")
 (load "~/.emacs.d/config/gtd_org.el")
 
@@ -92,3 +92,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'narrow-to-region 'disabled nil)

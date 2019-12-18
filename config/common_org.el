@@ -1,4 +1,5 @@
 ;; ORG agenda
+(require 'org)
 (bind-key "C-c l" 'org-store-link)
 (bind-key "C-c c" 'org-capture)
 (bind-key "C-c a" 'org-agenda)
@@ -19,6 +20,12 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
     )
   )
 
+(add-to-list 'org-modules 'org-habit t)
+(setq org-habit-preceding-days 7
+      org-habit-following-days 1
+      org-habit-graph-column 80
+      org-habit-show-habits-only-for-today t
+      org-habit-show-all-today t)
 
 (setq org-src-fontify-nativey t)
 

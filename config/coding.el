@@ -15,7 +15,7 @@
   :mode "\\.yaml\\'"
   )
 
-  (use-package web-mode
+(use-package web-mode
     :ensure t
     :mode ("\\.html\\'")
     :config

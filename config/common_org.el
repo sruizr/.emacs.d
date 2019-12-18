@@ -44,15 +44,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (setq org-refile-use-outline-path 'file)
 (setq org-refile-allow-creating-parent-nodes 'confirm)
 
-;; (find-file "/home/sruiz/Dropbox/Org/inbox.org")n
-;; (find-file "/home/sruiz/Dropbox/Org/gtd.org")
-
-;; (setq org-default-notes-file "~/home/sruiz/Dropbox/Org/inbox.org")
-
-;; (find-file "/home/sruiz/AKO/Org/inbox.org")
-;; (find-file "/home/sruiz/AKO/Org/gtd.org")
-;; (setq org-default-notes-file "/home/sruiz/AKO/Org/gtd.org")
-
 (setq org-agenda-sorting-strategy
  (quote
   (
@@ -60,50 +51,6 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
    )
    )
  )
-
-
-;; (setq org-agenda-custom-commands
-;;       '(
-;; 	("c" "Simple agenda view"
-;; 	 (
-;; 	  (tags-todo "+TODO=\"NEXT\""
-;; 		     (
-;; 		      (org-agenda-overriding-header "Próximas acciones:")
-;; 		      (org-agenda-skip-function
-;; 		       '(org-agenda-skip-entry-if 'notregexp "\[#[A-E]\]")
-;; 		      )
-;; 		      )
-;; 		     )
-;; 	  (tags-todo "+TODO=\"NEXT\""
-;; 	  	   (
-;; 	  	    (org-agenda-overriding-header "Acciones sin planificar:")
-;; 	  	    (org-agenda-skip-function
-;; 	  	     '(or
-;; 	  		 (org-agenda-skip-entry-if 'regexp "\[#[A-E]\]")
-;; 	  		 (org-agenda-skip-if nil '(scheduled deadline))
-;; 	  		 )
-;; 		     )
-;; 		    )
-;; 	  	   )
-;; 	  (tags-todo "+TODO=\"TODO\""
-;; 	  	   (
-;; 	  	    (org-agenda-overriding-header "Acciones pendientes:")
-;; 	  	    (org-agenda-skip-function
-;; 	  	     '(org-agenda-skip-if nil '(scheduled deadline))
-;; 		    )
-;; 	  	   )
-;; 		   )
-;; 	  )
-;; 	 )
-;; 	("r" "Reunión"
-;; 	 (
-;; 	  (todo "TASK")
-;; 	  (todo "DELEGATED")
-;; 	  )
-;; 	 )
-;; 	)
-;;       )
-
 
 (org-babel-do-load-languages
  'org-babel-load-languages

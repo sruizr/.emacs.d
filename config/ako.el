@@ -7,6 +7,7 @@
 ;;                              "~/.org/calendar.org"))
 
 (setq org-base-path "~/AKO/Org")
+(load "~/.emacs.d/config/gtd-mode.el")
 
 (setq org-tag-persistent-alist
      '(
@@ -25,42 +26,36 @@
 	(:endgroup . nil)
 	))
 
-
-;; (setq org-agenda-custom-commands
-;;       '(
-;; 	("c" "Simple agenda view"
-;; 	 (
-;; 	  (tags-todo "+TODO=\"NEXT\""
-;; 		     (
-;; 		      (org-agenda-overriding-header "Próximas acciones:")
-;; 		      (org-agenda-skip-function
-;; 		       '(org-agenda-skip-entry-if 'notregexp "\[#[A-E]\]")
-;; 		      )
-;; 		      )
-;; 		     )
-;; 	  (agenda "")
-;; 	  ;; (tags-todo "+PRIORITY=\"A\"")
-;; 	  ;; (tags-todo "+PRIORITY=\"B\"")
-;; 	  ;; (tags-todo "+PRIORITY=\"C\"" )
-;; 	  ;; (tags-todo "+PRIORITY<=\"D\"")
-;; 	  (alltodo ""
-;; 	  	   (
-;; 	  	    (org-agenda-overriding-header "Acciones sin planificar:")
-;; 	  	    (org-agenda-skip-function
-;; 	  	     '(or
-;; 	  		 (org-agenda-skip-entry-if 'regexp "\[#[A-E]\]")
-;; 	  		 (org-agenda-skip-if nil '(scheduled deadline))
-;; 	  		 )
-;; 		     )
-;; 		    )
-;; 	  	   )
-;; 	  )
-;; 	 )
-;; 	("r" "Reunión"
-;; 	 (
-;; 	  (todo "TASK")
-;; 	  (todo "GAVE")
-;; 	  )
-;; 	 )
-;; 	)
-;;       )
+(setq org-agenda-custom-commands
+        `(
+	  (" " "Agenda"
+	   ((agenda "" ((org-agenda-span 3)))
+	    ,(rmh/agendablock-inbox)
+           ;; ,(rmh/agendablock-tasks-waiting)
+	    ,(rmh/agendablock-next-in-active)
+	    ,(sr/agendablock-next-role-tasks)
+           ;; ,(rmh/agendablock-active-projects-with-next)
+           ;; ,(rmh/agendablock-active-projects-without-next)
+           ;; ,(rmh/agendablock-waiting-projects)
+	    ,(rmh/agendablock-backlog-of-active)
+	    ,(rmh/agendablock-checklists))
+	   nil)
+          ("r" "Review Agenda"
+           ((agenda "" ((org-agenda-span 3)))
+            ,(rmh/agendablock-inbox)
+            ,(rmh/agendablock-loose-tasks)
+            ,(rmh/agendablock-tasks-waiting)
+            ,(rmh/agendablock-next-in-active)
+            ,(rmh/agendablock-active-projects-with-next)
+            ,(rmh/agendablock-active-projects-without-next)
+            ,(rmh/agendablock-backlog-of-active)
+            ,(rmh/agendablock-checklists))
+           nil)
+	  ("b" "Blockers"
+	   ((agenda "" ((org-agenda-span 3)))
+	    ,(sr/to-be-delegated)
+	    ,(sr/delegated)
+	    )
+	   )
+	  )
+	)

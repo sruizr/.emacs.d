@@ -23,10 +23,6 @@
 (setq org-agenda-files (list org-base-path))
 (setq org-default-notes-file '(concat org-base-path "/inbox.org"))
 
-(require 'org-habit)
-(setq org-habit-graph-column 102)
-(setq org-habit-following-days 7)
-(setq org-habit-preceding-days 21)
 
 ;; display teh tags farther right
   (setq org-agenda-tags-column -102)
@@ -165,9 +161,11 @@
 (defun sr/to-be-delegated ()
   `(tags-todo "/+TODO"
 	      ((org-agenda-overriding-header "Tasks to delegate")
-	       (org-agenda-skip-function (org-query-select "headline"
-							   (org-query-stringmatch ":2")
-							   ))
+	       (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp  ":2.*:")
+		;; (org-query-select "headline"
+		;; 					   (org-query-headline
+		;; 					    (org-query-stringmatch ":2")))
+							   )
 	       )
     )
   )
@@ -185,7 +183,7 @@
   (setq org-agenda-custom-commands
         `(
 	  (" " "Agenda"
-          ((agenda "" ((org-agenda-ndays 1)))
+          ((agenda "" ((org-agenda-span 3)))
            ,(rmh/agendablock-inbox)
            ;; ,(rmh/agendablock-tasks-waiting)
            ,(rmh/agendablock-next-in-active)
@@ -197,7 +195,7 @@
            ,(rmh/agendablock-checklists))
           nil)
           ("r" "Review Agenda"
-           ((agenda "" ((org-agenda-ndays 1)))
+           ((agenda "" ((org-agenda-span 3)))
             ,(rmh/agendablock-inbox)
             ,(rmh/agendablock-loose-tasks)
             ,(rmh/agendablock-tasks-waiting)
@@ -208,7 +206,7 @@
             ,(rmh/agendablock-checklists))
            nil)
 	  ("b" "Blockers"
-	   ((agenda "" ((org-agenda-ndays 1)))
+	   ((agenda "" ((org-agenda-span 3)))
 	    ,(sr/to-be-delegated)
 	    ,(sr/delegated)
 	    )

@@ -75,7 +75,9 @@
   "Is the headline a next action in an active project."
   (and
    (org-query-parent (org-query-gtd-active-project))
-   (org-query-todo '("NEXT"))))
+   (org-query-todo '("NEXT")))
+   (not (org-query-child(org-query-todo)))
+  )
 
 
 (defun org-query-gtd-loose-task ()

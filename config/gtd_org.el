@@ -12,7 +12,7 @@
 (print (concat org-base-path "inbox.org"))
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline (lambda()(concat org-base-path "/inbox.org")) "Inbox")
-         "* TODO %?\n :PROPERTIES:\n  :OPEN_ON:%U\n  :END:\n")
+         "* TODO %?\n :PROPERTIES:\n  :OPEN_ON: %U\n  :END:\n")
 	("j" "Journal" entry (file+datetree (lambda() (concat org-base-path "/diary.org")))
 	 "**** %U%?%a \n" :tree-type week)
 	("m" "Meeting" entry (file+datetree (lambda() (concat org-base-path "/diary.org")))
@@ -27,7 +27,10 @@
 ;; display teh tags farther right
   (setq org-agenda-tags-column -102)
 
-(use-package org-pomodoro)
+(use-package org-pomodoro
+  :custom (org-pomodoro-ticking-sound-p t)
+  :bind ("C-c i" . org-pomodoro)
+ )
 
 
 ;; (define-key global-map "\C-cr"
